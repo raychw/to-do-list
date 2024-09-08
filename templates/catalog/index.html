@@ -4,7 +4,7 @@
 {% block content %}
   <form action="" method="get" class="form-inline">
   </form>
-  <br>  
+  <br>
   <h1>
     To-do list
   <a href="{% url 'catalog:task-create' %}" class="btn btn-primary link-to-page">
@@ -24,6 +24,12 @@
           {% endif %}
         </td>
       </tr>
+      <a href="{% url 'catalog:task-update' pk=task.id %}" class="btn btn-primary">
+        Update
+      </a>
+      <a href="{% url 'catalog:task-delete' pk=task.id %}" class="btn btn-primary">
+        Delete
+      </a>
     {% endfor %}
 {% else %}
     <p>There are currently no tasks.</p>

@@ -17,6 +17,17 @@ class TaskCreateView(generic.CreateView):
     success_url = reverse_lazy("catalog:index")
 
 
+class TaskUpdateView(generic.UpdateView):
+    model = Task
+    fields = "__all__"
+    success_url = reverse_lazy("catalog:index")
+
+
+class TaskDeleteView(generic.DeleteView):
+    model = Task
+    success_url = reverse_lazy("catalog:index")
+
+
 class TagListView(generic.ListView):
     model = Tag
     template_name = "catalog/tag_list.html"
