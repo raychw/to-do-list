@@ -1,3 +1,4 @@
+from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views import generic
 
@@ -33,3 +34,11 @@ class TagListView(generic.ListView):
     template_name = "catalog/tag_list.html"
     context_object_name = "tag_list"
     paginate_by = 10
+
+
+def toggle_complete_to_task(request, pk):
+    task = get_object_or_404(Task, pk=pk)  # Correctly fetch task by pk
+    task.is_done = not task.is_done  # Toggle the completion status
+    task.save()
+
+    return redirect("catalog:index")

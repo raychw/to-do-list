@@ -15,6 +15,15 @@
     {% for task in task_list %}
       <tr>
         <td>{{ task.content }} {{ task.is_done }}</td>
+        {% if task.is_done %}
+          <a href="{% url 'catalog:task-toggle-complete' pk=task.id %}" class="btn btn-primary">
+            Undo
+          </a>
+        {% else %}
+          <a href="{% url 'catalog:task-toggle-complete' pk=task.id %}" class="btn btn-primary">
+            Complete
+          </a>
+        {% endif %}
         <td>{{ task.datetime }}</td>
         <td>
           {% if task.tags.all %}
