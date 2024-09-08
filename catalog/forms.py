@@ -9,6 +9,7 @@ class TaskForm(forms.ModelForm):
         fields = ["content", "deadline", "tags"]
 
     deadline = forms.DateTimeField(
+        required=False,
         input_formats=["%Y-%m-%d %H:%M:%S"],
         widget=forms.DateTimeInput(attrs={
             "type": "datetime-local"
