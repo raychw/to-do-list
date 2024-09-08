@@ -2,46 +2,73 @@
 {% load crispy_forms_filters %}
 
 {% block content %}
-  <form action="" method="get" class="form-inline">
-  </form>
-  <br>
-  <h1>
-    To-do list
-  <a href="{% url 'catalog:task-create' %}" class="btn btn-primary link-to-page">
-      Add task
-  </a>
-  </h1>
-  {% if task_list %}
-    {% for task in task_list %}
-      <tr>
-        <td>{{ task.content }} {{ task.is_done }}</td>
-        {% if task.is_done %}
-          <a href="{% url 'catalog:task-toggle-complete' pk=task.id %}" class="btn btn-primary">
-            Undo
-          </a>
-        {% else %}
-          <a href="{% url 'catalog:task-toggle-complete' pk=task.id %}" class="btn btn-primary">
-            Complete
-          </a>
-        {% endif %}
-        <td>{{ task.datetime }}</td>
-        <td>
-          {% if task.tags.all %}
-            {% for tag in task.tags.all %}
-              {{ tag.name }}
-            {% endfor %}
-          {% endif %}
-        </td>
-      </tr>
-      <a href="{% url 'catalog:task-update' pk=task.id %}" class="btn btn-primary">
-        Update
-      </a>
-      <a href="{% url 'catalog:task-delete' pk=task.id %}" class="btn btn-primary">
-        Delete
-      </a>
-    {% endfor %}
-{% else %}
-    <p>There are currently no tasks.</p>
-{% endif %}
+  <div class="container">
+    <form action="" method="get" class="form-inline mb-4">
+      <!-- You can add filters or search functionality here -->
+    </form>
 
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h1>To-do list</h1>
+      <a href="{% url 'catalog:task-create' %}" class="btn btn-primary">Add Task</a>
+    </div>
+
+    {% if task_list %}
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Content</th>
+            <th>Status</th>
+            <th>Datetime</th>
+            <th>Deadline</th>
+            <th>Tags</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for task in task_list %}
+            <tr>
+              <td>{{ task.content }}</td>
+              <td>
+                {% if task.is_done %}
+                  <span class="badge badge-success">Done</span>
+                {% else %}
+                  <span class="badge badge-secondary">Not Done</span>
+                {% endif %}
+              </td>
+              <td>{{ task.datetime }}</td>
+              <td>{{ task.deadline }}</td>
+              <td>
+                {% if task.tags.all %}
+                  {% for tag in task.tags.all %}
+                    {{ tag.name }}{% if not forloop.last %}, {% endif %}
+                  {% endfor %}
+                {% else %}
+                  No tags
+                {% endif %}
+              </td>
+              <td>
+                {% if task.is_done %}
+                  <a href="{% url 'catalog:task-toggle-complete' pk=task.id %}" class="btn btn-warning">
+                    Undo
+                  </a>
+                {% else %}
+                  <a href="{% url 'catalog:task-toggle-complete' pk=task.id %}" class="btn btn-success">
+                    Complete
+                  </a>
+                {% endif %}
+                <a href="{% url 'catalog:task-update' pk=task.id %}" class="btn btn-info">
+                  Update
+                </a>
+                <a href="{% url 'catalog:task-delete' pk=task.id %}" class="btn btn-danger">
+                  Delete
+                </a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p>There are currently no tasks.</p>
+    {% endif %}
+  </div>
 {% endblock %}
