@@ -1,0 +1,29 @@
+/* styles.css or your separate CSS file */
+
+
+.sidebar-nav {
+  list-style: none;
+  padding: 0;
+  position: fixed; /* Keep the sidebar fixed */
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100px; /* Adjust the width as needed */
+  background-color: #f0f0f0; /* Change the background color */
+  overflow-y: auto; /* Enable scrolling for long lists */
+}
+
+.sidebar-item {
+  margin-bottom: 10px;
+}
+
+.sidebar-link {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: #333;
+}
+
+.sidebar-link:hover {
+  background-color: #ddd;
+}
