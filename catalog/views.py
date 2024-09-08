@@ -11,6 +11,12 @@ class TaskListView(generic.ListView):
     paginate_by = 5
 
 
+class TaskCreateView(generic.CreateView):
+    model = Task
+    fields = "__all__"
+    success_url = reverse_lazy("catalog:index")
+
+
 class TagListView(generic.ListView):
     model = Tag
     template_name = "catalog/tag_list.html"
