@@ -55,8 +55,8 @@ class TagDeleteView(generic.DeleteView):
 
 
 def toggle_complete_to_task(request, pk):
-    task = get_object_or_404(Task, pk=pk)  # Correctly fetch task by pk
-    task.is_done = not task.is_done  # Toggle the completion status
+    task = get_object_or_404(Task, pk=pk)
+    task.is_done = not task.is_done
     task.save()
 
     return redirect("catalog:index")
