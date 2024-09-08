@@ -1,5 +1,8 @@
-from django.shortcuts import render
+from django.urls import reverse_lazy
+from django.views import generic
 
-def index(request):
-    """View function for the home page of the site."""
-    pass
+
+class TaskListView(generic.ListView):
+    model = Task
+    template_name = "tasks/index.html"  # Your template
+    context_object_name = "tasks"
