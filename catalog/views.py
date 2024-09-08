@@ -3,6 +3,7 @@ from django.urls import reverse_lazy
 from django.views import generic
 
 from catalog.models import Task, Tag
+from catalog.forms import TaskForm
 
 
 class TaskListView(generic.ListView):
@@ -14,13 +15,13 @@ class TaskListView(generic.ListView):
 
 class TaskCreateView(generic.CreateView):
     model = Task
-    fields = "__all__"
+    form_class = TaskForm
     success_url = reverse_lazy("catalog:index")
 
 
 class TaskUpdateView(generic.UpdateView):
     model = Task
-    fields = "__all__"
+    form_class = TaskForm
     success_url = reverse_lazy("catalog:index")
 
 
