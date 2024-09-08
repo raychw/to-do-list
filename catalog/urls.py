@@ -9,11 +9,31 @@ from catalog.views import (
 )
 
 urlpatterns = [
-    path("", TaskListView.as_view(), name="index"),
-    path("create/", TaskCreateView.as_view(), name="task-create"),
-    path("<int:pk>/update/", TaskUpdateView.as_view(), name="task-update"),
-    path("<int:pk>/delete/", TaskDeleteView.as_view(), name="task-delete"),
-    path("tags/", TagListView.as_view(), name="tag-list"),
+    path(
+        "",
+        TaskListView.as_view(),
+        name="index"
+    ),
+    path(
+        "create/",
+        TaskCreateView.as_view(),
+        name="task-create"
+    ),
+    path(
+        "<int:pk>/update/",
+        TaskUpdateView.as_view(),
+        name="task-update"
+    ),
+    path(
+        "<int:pk>/delete/",
+        TaskDeleteView.as_view(),
+        name="task-delete"
+    ),
+    path(
+        "tags/",
+        TagListView.as_view(),
+        name="tag-list"
+    ),
 ]
 
 app_name="catalog"
