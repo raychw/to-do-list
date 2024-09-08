@@ -7,10 +7,12 @@ from catalog.models import Task, Tag
 class TaskListView(generic.ListView):
     model = Task
     template_name = "catalog/index.html"  # Your template
-    context_object_name = "tasks"
+    context_object_name = "task_list"
+    paginate_by = 5
 
 
 class TagListView(generic.ListView):
     model = Tag
     template_name = "catalog/tag_list.html"
-    context_object_name = "tags"
+    context_object_name = "tag_list"
+    paginate_by = 10
