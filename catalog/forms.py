@@ -1,6 +1,7 @@
 from django import forms
 
-from catalog.models import Task
+from catalog.models import Task, Tag
+
 
 class TaskForm(forms.ModelForm):
     class Meta:
@@ -12,4 +13,9 @@ class TaskForm(forms.ModelForm):
         widget=forms.DateTimeInput(attrs={
             "type": "datetime-local"
         })
+    )
+
+    tags = forms.ModelMultipleChoiceField(
+        queryset=Tag.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
     )

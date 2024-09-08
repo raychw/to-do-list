@@ -37,6 +37,23 @@ class TagListView(generic.ListView):
     paginate_by = 10
 
 
+class TagCreateView(generic.CreateView):
+    model = Tag
+    fields = "__all__"
+    success_url = reverse_lazy("catalog:tag-list")
+
+
+class TagUpdateView(generic.UpdateView):
+    model = Tag
+    fields = "__all__"
+    success_url = reverse_lazy("catalog:tag-list")
+
+
+class TagDeleteView(generic.DeleteView):
+    model = Tag
+    success_url = reverse_lazy("catalog:tag-list")
+
+
 def toggle_complete_to_task(request, pk):
     task = get_object_or_404(Task, pk=pk)  # Correctly fetch task by pk
     task.is_done = not task.is_done  # Toggle the completion status
